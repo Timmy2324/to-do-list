@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Создание задачи</h2>
+  <form [formGroup]="newTaskForm" novalidate>
+    <div class="task-card">
+      <div class="task-header">
+        <div class="task-title">
+          <label for="task-title">Заголовок задачи <span class="red">*</span></label>
+          <input id="task-title" #taskTitle formControlName="title">
+          <div class="invalid-message"
+            *ngIf="newTaskForm.controls['title'].invalid && newTaskForm.controls['title'].touched">
+            Необходимо заполнить поле
+          </div>
+        </div>
+        <div class="task-priority">
+          <mat-label>Приоритетность <span class="red">*</span></mat-label>
+          <mat-select #taskPriority formControlName="priority">
+            <mat-option *ngFor="let priority of priorities" [value]="priority">
+              {{priority}}
+            </mat-option>
+          </mat-select>
+          <div class="invalid-message"
+            *ngIf="newTaskForm.controls['priority'].invalid && newTaskForm.controls['priority'].touched">
+            Необходимо заполнить поле
+          </div>
+        </div>
+      </div>
+      <div class="task-text">
+        <label for="task-text">Описание задачи</label>
+        <textarea id="task-text" #taskText formControlName="text"></textarea>
+      </div>
+    </div>
+    <div class="task-buttons">
+      <button class="add-task task-button-grey" [disabled]="newTaskForm.invalid"
+        (click)="addTask(taskTitle.value, taskPriority.value, taskText.value)" routerLink="/tasks"
+        [class.task-button-disabled]="newTaskForm.invalid">
+        <span [matTooltip]="newTaskForm.invalid ? 'Необходимо заполнить поля отмеченные звездочкой' : ''">Создать</span>
+      </button>
+      <button class="task-button-red" routerLink="/tasks">Отмена</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,136 @@
+h2 {
+  text-align: center;
+  font-size: 2.6em;
+  margin-top: 1.4em;
+  margin-bottom: 1.4em;
+}
+
+.button-back {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.button-back:hover {
+  background-color: rgb(80, 135, 236);
+}
+
+.task-card input {
+  border: none;
+}
+
+.task-card input:focus {
+  outline: none;
+}
+
+.red {
+  color: red;
+}
+
+.task-card {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.task-header {
+  margin-top: 0;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-title {
+  position: relative;
+  width: 80%;
+}
+
+.task-title input {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  width: 100%;
+  border-bottom: 1px solid;
+  background-color: white;
+  padding: 0;
+}
+
+.mat-select {
+  margin-top: 5px;
+}
+
+.invalid-message {
+  color: red;
+  position: absolute;
+  bottom: -18px;
+  font-size: 12px;
+  left: 2px;
+}
+
+.task-card > p {
+  margin: 0;
+}
+
+.task-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-buttons > button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.task-button-grey {
+  margin-right: 12px;
+  background-color: #e6eaf5;
+}
+
+.task-button-grey:hover {
+  background-color: #dee3f1;
+}
+
+.task-button-red {
+  background-color: #D0021B;
+  color: white;
+}
+
+.task-button-red:hover {
+  background-color: #bd0117;
+}
+
+.task-button-disabled {
+  opacity: 0.5;
+}
+
+.task-button-disabled:hover {
+  background-color: #e6eaf5;
+}
+
+.task-priority {
+  width: 18%;
+  position: relative;
+}
+
+.task-priority .mat-select {
+  border-bottom: 1px solid black;
+  line-height: 1.5em;
+}
+
+.task-text > label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.task-text > textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  resize: none
+}
+

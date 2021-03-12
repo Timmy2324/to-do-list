@@ -1,0 +1,100 @@
+.button-back {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.button-back:hover {
+  background-color: rgb(80, 135, 236);
+}
+
+.task-card {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.task-header {
+  margin-top: 0;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-header > h2 {
+  margin: 0;
+  width: 80%;
+  border-bottom: 1px solid;
+}
+
+.task-header > h2 > input {
+  font-size: 24px;
+  font-weight: 700;
+  width: 96%;
+}
+
+.task-card > p {
+  margin: 0;
+}
+
+.task-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-buttons > button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.task-button-grey {
+  margin-right: 12px;
+  background-color: #E8EBF3;
+}
+
+.task-button-grey:hover {
+  background-color: #dee3f1;
+}
+
+.task-button-red {
+  background-color: #D0021B;
+  color: white;
+}
+
+.task-button-red:hover {
+  background-color: #bd0117;
+}
+
+.task-card input {
+  border: none;
+}
+
+.task-card input:focus {
+  outline: none;
+}
+
+.task-priority {
+  width: 18%;
+}
+
+.task-priority .mat-select {
+  border-bottom: 1px solid black;
+  line-height: 1.5em;
+}
+
+.task-text > label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.task-text > textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  resize: none
+}

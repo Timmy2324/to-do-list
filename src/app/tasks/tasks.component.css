@@ -1,0 +1,95 @@
+h2 {
+  text-align: center;
+  font-size: 1em;
+}
+
+.wrap-button {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.new-task {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4682B4;
+  color: white;
+}
+
+.new-task:hover {
+  background-color: #3376ad;
+}
+
+.tasks {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.tasks > li {
+  list-style-type: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.tasks-priority {
+  padding: 2px 5px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.red {
+  background-color: darkred;
+}
+
+.green {
+  background-color: darkgreen;
+}
+
+.grey {
+  background-color: darkgrey;
+}
+
+.tasks-title {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  margin-left: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.task-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.task-buttons > button {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.task-button-grey {
+  margin-right: 12px;
+  background-color: #E8EBF3;
+}
+
+.task-button-grey:hover {
+  background-color: #dee3f1;
+}
+
+.task-button-red {
+  background-color: #D0021B;
+  color: white;
+}
+
+.task-button-red:hover {
+  background-color: #bd0117;
+}

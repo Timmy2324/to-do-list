@@ -1,0 +1,25 @@
+<div *ngIf="task">
+  <div class="container">
+    <div class="task-card">
+      <div class="task-header">
+        <h2>{{task.id}}. <input id="task-title" [(ngModel)]="task.title"></h2>
+        <div class="task-priority">
+          <mat-label>Приоритетность</mat-label>
+          <mat-select [(ngModel)]="task.priority">
+            <mat-option *ngFor="let priority of priorities" [value]="priority">
+              {{priority}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+      <div class="task-text">
+        <label for="task-text">Описание задачи</label>
+        <textarea id="task-text" [(ngModel)]="task.text"></textarea>
+      </div>
+    </div>
+    <div class="task-buttons">
+      <button class="task-button-grey" (click)="saveTask()" routerLink="/tasks">Cохранить</button>
+      <button class="task-button-red" routerLink="/tasks">Отмена</button>
+    </div>
+  </div>
+</div>
