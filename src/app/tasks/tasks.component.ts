@@ -11,6 +11,7 @@ import { TaskService } from '../task.service';
 export class TasksComponent implements OnInit {
   tasks: Task[];
   priorityColor: string;
+  searchValue: string;
 
   constructor(private taskService: TaskService) { }
 

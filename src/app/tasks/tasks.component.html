@@ -5,8 +5,12 @@
       Новая задача
     </button>
   </div>
+  <div class="wrap-search-task">
+    <label for="search-task">Поиск по заголовку: </label>
+    <input id="search-task" type="text" [(ngModel)]="searchValue">
+  </div>
   <ul class="tasks">
-    <li *ngFor="let task of tasks">
+    <li *ngFor="let task of tasks | searchTitleFilter: searchValue">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <a class="tasks-title">

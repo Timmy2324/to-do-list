@@ -38,12 +38,4 @@ export class NewTaskComponent implements OnInit {
       this.tasks.push(task);
     })
   }
-
-  // buttonDisabled(title: string, priority: string): boolean {
-  //   if (!title && !priority) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 }

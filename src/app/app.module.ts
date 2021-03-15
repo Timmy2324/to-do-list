@@ -15,6 +15,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { SearchTitleFilterPipe } from './search-title-filter.pipe';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NewTaskComponent } from './new-task/new-task.component';
     TasksComponent,
     TaskDetailComponent,
     NewTaskComponent,
+    SearchTitleFilterPipe,
   ],
   imports: [
     BrowserModule,

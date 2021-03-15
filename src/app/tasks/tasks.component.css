@@ -9,6 +9,20 @@ h2 {
   justify-content: flex-end;
 }
 
+.wrap-search-task {
+  margin-bottom: 15px;
+}
+
+.wrap-search-task > input {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 20%;
+}
+
+.wrap-search-task > input:focus {
+  outline: none;
+}
+
 .new-task {
   padding: 8px 10px;
   border: none;
