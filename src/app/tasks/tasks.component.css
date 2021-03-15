@@ -9,14 +9,15 @@ h2 {
   justify-content: flex-end;
 }
 
-.wrap-filter {
+.filters {
   margin-bottom: 15px;
 }
 
-.filters {
+.header-filters {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  align-items: center;
 }
 
 .wrap-search-task > input {
