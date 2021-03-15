@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../task';
 import { TaskService } from '../task.service';
+import { searchPriorities } from './search-priorities';
 
 @Component({
   selector: 'app-tasks',
@@ -12,6 +13,8 @@ export class TasksComponent implements OnInit {
   tasks: Task[];
   priorityColor: string;
   searchValue: string;
+  priorities = Object.values(searchPriorities);
+  searchPriorityValue: string;
 
   constructor(private taskService: TaskService) { }
 

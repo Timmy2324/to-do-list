@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Task } from '../task';
 import { TaskService } from '../task.service';
-import { PRIORITIES } from '../priorities';
+import { Priorities } from '../priorities';
 
 @Component({
   selector: 'app-new-task',
@@ -13,7 +13,7 @@ import { PRIORITIES } from '../priorities';
 export class NewTaskComponent implements OnInit {
   task: Task | undefined;
   tasks: Task[] = [];
-  priorities = PRIORITIES;
+  priorities = Object.values(Priorities);
 
   newTaskForm: FormGroup;
 
@@ -24,7 +24,8 @@ export class NewTaskComponent implements OnInit {
       title: new FormControl('', Validators.required),
       priority: new FormControl('', Validators.required),
       text: new FormControl(''),
-    })
+    });
+    console.log(Object.values(this.priorities));
   }
 
   ngOnInit(): void {

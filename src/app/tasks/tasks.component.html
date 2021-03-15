@@ -1,16 +1,26 @@
 <div class="container">
   <h1>To-do-list</h1>
-  <div class="wrap-button">
-    <button class="new-task" routerLink="/new-task">
-      Новая задача
-    </button>
-  </div>
-  <div class="wrap-search-task">
-    <label for="search-task">Поиск по заголовку: </label>
-    <input id="search-task" type="text" [(ngModel)]="searchValue">
+  <div class="wrap-filter">
+    <div class="filters">
+      <div class="wrap-search-task">
+        <label for="search-task">Поиск по заголовку: </label>
+        <input id="search-task" type="text" [(ngModel)]="searchValue">
+      </div>
+      <button class="new-task" routerLink="/new-task">
+        Новая задача
+      </button>
+    </div>
+    <div class="task-priority">
+      <mat-label>Фильтрация по приоритетности</mat-label>
+      <mat-select [(ngModel)]="searchPriorityValue">
+        <mat-option *ngFor="let priority of priorities" [value]="priority">
+          {{priority}}
+        </mat-option>
+      </mat-select>
+    </div>
   </div>
   <ul class="tasks">
-    <li *ngFor="let task of tasks | searchTitleFilter: searchValue">
+    <li *ngFor="let task of tasks | searchTitleFilter: searchValue | priorityFilter:searchPriorityValue">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <a class="tasks-title">

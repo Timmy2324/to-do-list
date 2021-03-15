@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
-import { PRIORITIES } from '../priorities';
+import { Priorities } from '../priorities';
 
 @Component({
   selector: 'app-task-detail',
@@ -11,7 +11,7 @@ import { PRIORITIES } from '../priorities';
 })
 export class TaskDetailComponent implements OnInit {
   task: Task | undefined;
-  priorities = PRIORITIES;
+  priorities = Object.values(Priorities);
 
   constructor(
     private route: ActivatedRoute,
