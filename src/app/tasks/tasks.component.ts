@@ -1,3 +1,4 @@
+import { state, trigger, style, transition, animate, keyframes } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../task';
@@ -7,14 +8,22 @@ import { searchPriorities } from './search-priorities';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  styleUrls: ['./tasks.component.css'],
+  animations: [
+    trigger('filterAnimation', [
+      state('small', style({ height: '0px', opacity: 0, visibility: 'hidden' })),
+      state('large', style({ height: '100px', opacity: 1, visibility: 'visible' })),
+      transition('small <=> large', animate('300ms ease-in'))
+    ])
+  ],
 })
 export class TasksComponent implements OnInit {
   tasks: Task[];
   priorityColor: string;
   searchValue: string;
   priorities = Object.values(searchPriorities);
-  searchPriorityValue: string;
+  searchPriorityValue: string = 'All';
+  collapsed: string = 'small';
 
   constructor(private taskService: TaskService) { }
 
@@ -46,5 +55,14 @@ export class TasksComponent implements OnInit {
         return;
       }
     }
+  }
+
+  filterAnimation() {
+    this.collapsed = (this.collapsed === 'small' ? 'large' : 'small');
+  }
+
+  dischargeFilter() {
+    this.searchValue = '';
+    this.searchPriorityValue = 'All';
   }
 }
