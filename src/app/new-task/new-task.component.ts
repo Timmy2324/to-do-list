@@ -25,7 +25,6 @@ export class NewTaskComponent implements OnInit {
       priority: new FormControl('', Validators.required),
       text: new FormControl(''),
     });
-    console.log(Object.values(this.priorities));
   }
 
   ngOnInit(): void {

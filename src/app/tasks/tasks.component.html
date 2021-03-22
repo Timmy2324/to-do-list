@@ -1,14 +1,9 @@
 <div class="container">
   <h1>To-do-list</h1>
   <div class="head-buttons">
-    <div class="buttons-filter">
-      <button (click)="filterAnimation()" class="filter-animation">
-        Фильтр
-      </button>
-      <button class="discharge-filter" (click)="dischargeFilter()">
-        Сброс
-      </button>
-    </div>
+    <button (click)="filterAnimation()" class="filter-animation">
+      Фильтр
+    </button>
     <button class="new-task" routerLink="/new-task">
       Новая задача
     </button>
@@ -23,16 +18,24 @@
       </div>
       <div class="task-priority">
         <mat-label>Фильтрация по приоритетности</mat-label>
-        <mat-select [(ngModel)]="searchPriorityValue">
+        <mat-select [(ngModel)]="priorityValue">
           <mat-option *ngFor="let priority of priorities" [value]="priority">
             {{priority}}
           </mat-option>
         </mat-select>
       </div>
+      <div class="filter-buttons">
+        <button class="filter-animation" (click)="filterTasks(searchValue, priorityValue)">
+          Фильтровать
+        </button>
+        <button class="discharge-filter" (click)="dischargeFilter()">
+          Сброс
+        </button>
+      </div>
     </div>
   </div>
-  <ul class="tasks">
-    <li *ngFor="let task of tasks | searchTitleFilter: searchValue | priorityFilter:searchPriorityValue">
+  <ul class="tasks" *ngIf="tasks">
+    <li *ngFor="let task of showTasks(lowIndex, highIndex)">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <a class="tasks-title">
@@ -48,4 +51,7 @@
       </mat-expansion-panel>
     </li>
   </ul>
+  <mat-paginator *ngIf="tasks" [length]="tasks.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    (page)="getPaginatorData($event)">
+  </mat-paginator>
 </div>
