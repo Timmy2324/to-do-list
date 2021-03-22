@@ -1,6 +1,8 @@
-h2 {
+h1 {
   text-align: center;
-  font-size: 1em;
+  font-size: 1.4em;
+  margin-top: 1.4em;
+  margin-bottom: 1.4em;
 }
 
 .filters-wrap {
@@ -33,7 +35,6 @@ h2 {
   border-radius: 5px;
   padding: 30px 30px 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  width: 50%;
 }
 
 .header-filters {
@@ -55,8 +56,17 @@ h2 {
   outline: none;
 }
 
+.wrap-search-task label {
+  margin-bottom: 10px;
+}
+
 .task-priority {
   position: relative;
+}
+
+.task-priority mat-label {
+  margin-bottom: 10px;
+  display: block;
 }
 
 .task-priority .mat-select {
@@ -67,12 +77,11 @@ h2 {
 
 .filter-buttons {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .discharge-filter {
   background-color: rgb(196, 196, 196);
-  margin-left: 15px;
 }
 
 .discharge-filter:hover {
@@ -85,6 +94,11 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 15px; 
+}
+
+.filter-buttons button:last-child {
+  margin-bottom: 0;
 }
 
 .new-task {
@@ -170,4 +184,34 @@ h2 {
 
 .task-button-red:hover {
   background-color: #bd0117;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+
+  .filter-buttons button {
+    margin-bottom: 0;
+  }
+
+  .discharge-filter {
+    margin-left: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.6em;
+  }
+
+  .filters {
+    width: 50%;
+  }
 }
