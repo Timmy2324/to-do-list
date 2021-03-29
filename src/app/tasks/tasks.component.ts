@@ -49,6 +49,7 @@ export class TasksComponent implements OnInit {
 
   deleteTask(task: Task): void {
     this.tasks = this.tasks.filter(t => t !== task);
+    this.taskService.deleteTask(task).subscribe();
     this.initialTasks = this.initialTasks.filter(t => t !== task);
   }
 
@@ -72,8 +73,6 @@ export class TasksComponent implements OnInit {
   filterAnimation(): void {
     this.collapsed = (this.collapsed === 'small' ? 'large' : 'small');
   }
-
-
 
   getPaginatorData(event: PageEvent): void {
     if (event.pageIndex === this.pageIndex + 1) {

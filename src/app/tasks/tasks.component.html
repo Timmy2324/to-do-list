@@ -25,7 +25,7 @@
         </mat-select>
       </div>
       <div class="filter-buttons">
-        <button class="filter-animation" (click)="filterTasks(searchValue, priorityValue)">
+        <button class="filter-animation" (click)="filterTasks(searchValue, priorityValue); filterAnimation()">
           Фильтровать
         </button>
         <button class="discharge-filter" (click)="dischargeFilter()">
@@ -55,3 +55,4 @@
     (page)="getPaginatorData($event)">
   </mat-paginator>
 </div>
+<app-cat></app-cat>

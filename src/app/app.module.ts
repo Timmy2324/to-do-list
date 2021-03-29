@@ -16,6 +16,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { CatComponent } from './cat/cat.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { NewTaskComponent } from './new-task/new-task.component';
     TasksComponent,
     TaskDetailComponent,
     NewTaskComponent,
+    CatComponent,
   ],
   imports: [
     BrowserModule,

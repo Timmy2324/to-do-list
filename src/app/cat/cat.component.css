@@ -1,0 +1,57 @@
+.cat {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../assets/img/cat.jpg");
+  width: 240px;
+  height: 131px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: 10;
+  visibility: hidden;
+}
+
+.cat-eyes {
+  position: relative;
+  right: -8px;
+  bottom: -24px;
+  display: flex;
+  width: 42px;
+}
+
+.cat-eye {
+  border-radius: 50%;
+  position: relative;
+  display: block;
+}
+
+.cat-eye::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  display: block;
+  border-radius: 50%;
+  background-color: black;
+  position: absolute;
+  left: 5px;
+  top: 6px;
+}
+
+.cat-left-eye {
+  width: 20px;
+  height: 20px;
+}
+
+.cat-right-eye {
+  width: 22px;
+  height: 22px;
+  top: 3px;
+  left: 1px;
+}
+
+
+@media (min-width: 1700px) {
+  .cat {
+    visibility: visible;
+  } 
+}
