@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="tasks">
   <h1>To-do-list</h1>
   <div class="head-buttons">
     <button (click)="filterAnimation()" class="filter-animation">
@@ -34,7 +34,18 @@
       </div>
     </div>
   </div>
-  <ul class="tasks" *ngIf="tasks">
+  <div class="sorted-wrap">
+    <button (click)="sortById()">
+      id
+    </button>
+    <button (click)="sortByTitle()">
+      Заголовок
+    </button>
+    <button (click)="sortByPriority()">
+      Приоритет
+    </button>
+  </div>
+  <ul class="tasks">
     <li *ngFor="let task of showTasks(lowIndex, highIndex)">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -51,8 +62,8 @@
       </mat-expansion-panel>
     </li>
   </ul>
-  <mat-paginator *ngIf="tasks" [length]="tasks.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  <mat-paginator [length]="tasks.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
     (page)="getPaginatorData($event)">
   </mat-paginator>
 </div>
-<app-cat></app-cat>
+<app-cat *ngIf="tasks"></app-cat>

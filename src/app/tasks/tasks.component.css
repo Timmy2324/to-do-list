@@ -101,6 +101,37 @@ h1 {
   margin-bottom: 0;
 }
 
+.sorted-wrap {
+  display: flex;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+.sorted-wrap button {
+  border: none;
+  position: relative;
+  padding: 12px 20px;
+  display: block;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-right: 15px;
+}
+
+.sorted-wrap button:last-child {
+  margin-right: none;
+}
+
+.sorted-wrap button:hover {
+  background: rgba(0,0,0,.04);
+}
+
+.sorted-wrap button:active {
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
 .new-task {
   padding: 8px 10px;
   border: none;

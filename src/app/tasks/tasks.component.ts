@@ -33,6 +33,9 @@ export class TasksComponent implements OnInit {
   lowIndex: number = 0;
   highIndex: number = 5;
   pageSizeOptions: number[] = [5, 10, 25];
+  isSortId: boolean = true;
+  isSortTitle: boolean = true;
+  isSortPriority: boolean = true;
 
   constructor(private taskService: TaskService) { }
 
@@ -96,9 +99,16 @@ export class TasksComponent implements OnInit {
 
   filterTasks(title: string, priority: string): void {
     this.tasks = this.initialTasks;
-    if (priority === "All") {
+    if (title === undefined) {
+      if (priority === "All") {
+        return;
+      }
+      this.tasks = this.tasks.filter(task => task.priority.includes(priority));
+    }
+    else if (priority === "All") {
       this.tasks = this.tasks.filter(task => task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase()));
-    } else {
+    }
+    else {
       this.tasks = this.tasks.filter(task => task.priority.includes(priority));
       this.tasks = this.tasks.filter(task => task.title.toLocaleLowerCase().includes(title.toLocaleLowerCase()));
     }
@@ -108,5 +118,70 @@ export class TasksComponent implements OnInit {
     this.searchValue = '';
     this.priorityValue = 'All';
     this.tasks = this.initialTasks;
+  }
+
+  sortById() {
+    this.isSortTitle = true;
+    this.isSortPriority = true;
+    if (!this.isSortId) {
+      this.isSortId = !this.isSortId;
+      this.tasks = this.tasks.reverse();
+      return;
+    }
+    this.isSortId = !this.isSortId;
+    this.tasks = this.tasks.sort((task1, task2) => {
+      return task1.id - task2.id;
+    });
+  }
+
+  sortByTitle() {
+    this.isSortId = true;
+    this.isSortPriority = true;
+    if (!this.isSortTitle) {
+      this.isSortTitle = !this.isSortTitle;
+      this.tasks = this.tasks.reverse();
+      return;
+    }
+    this.isSortTitle = !this.isSortTitle;
+    this.tasks = this.tasks.sort((task1, task2) => {
+      if (task1.title.toLocaleLowerCase() > task2.title.toLocaleLowerCase()) {
+        return 1;
+      }
+      if (task1.title.toLocaleLowerCase() < task2.title.toLocaleLowerCase()) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  sortByPriority() {
+    this.isSortId = true;
+    this.isSortTitle = true;
+    if (!this.isSortPriority) {
+      this.isSortPriority = !this.isSortPriority;
+      this.tasks = this.tasks.reverse();
+      return;
+    }
+    this.isSortPriority = !this.isSortPriority;
+    this.tasks = this.tasks.sort((task1, task2) => {
+      return this.getPriority(task1.priority) - this.getPriority(task2.priority)
+    });
+  }
+
+  getPriority(priority: string) {
+    switch (priority) {
+      case 'High': {
+        return 3;
+      }
+      case 'Medium': {
+        return 2;
+      }
+      case 'Low': {
+        return 1;
+      }
+      default: {
+        return 0;
+      }
+    }
   }
 }
