@@ -7,6 +7,12 @@ import { Task } from '../task';
 import { TaskService } from '../task.service';
 import { searchPriorities } from './search-priorities';
 
+interface SortParam {
+  name: string;
+  sortFunc: (a: Task, b: Task) => number;
+  isSorted: boolean;
+}
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -30,12 +36,39 @@ export class TasksComponent implements OnInit {
   pageEvent: PageEvent;
   pageIndex: number = 0;
   pageSize: number = 5;
-  lowIndex: number = 0;
-  highIndex: number = 5;
+  startIndex: number = 0;
+  endIndex: number = 5;
   pageSizeOptions: number[] = [5, 10, 25];
-  isSortId: boolean = true;
-  isSortTitle: boolean = true;
-  isSortPriority: boolean = true;
+
+  public sortParams: SortParam[] = [
+    {
+      sortFunc: (task1: Task, task2: Task): number => {
+        return task1.id - task2.id;
+      },
+      isSorted: true,
+      name: 'Идентификатор',
+    },
+    {
+      sortFunc: (task1: Task, task2: Task): number => {
+        if (task1.title.toLocaleLowerCase() > task2.title.toLocaleLowerCase()) {
+          return 1;
+        }
+        if (task1.title.toLocaleLowerCase() < task2.title.toLocaleLowerCase()) {
+          return -1;
+        }
+        return 0;
+      },
+      isSorted: false,
+      name: 'Заголовок',
+    },
+    {
+      sortFunc: (task1: Task, task2: Task): number => {
+        return this.getPriority(task1.priority) - this.getPriority(task2.priority);
+      },
+      isSorted: false,
+      name: 'Приоритет',
+    }
+  ];
 
   constructor(private taskService: TaskService) { }
 
@@ -79,22 +112,22 @@ export class TasksComponent implements OnInit {
 
   getPaginatorData(event: PageEvent): void {
     if (event.pageIndex === this.pageIndex + 1) {
-      this.lowIndex = this.lowIndex + event.pageSize;
-      this.highIndex = this.highIndex + event.pageSize;
+      this.startIndex = this.startIndex + event.pageSize;
+      this.endIndex = this.endIndex + event.pageSize;
     }
     else if (event.pageIndex === this.pageIndex - 1) {
-      this.lowIndex = this.lowIndex - event.pageSize;
-      this.highIndex = this.highIndex - event.pageSize;
+      this.startIndex = this.startIndex - event.pageSize;
+      this.endIndex = this.endIndex - event.pageSize;
     }
     if (this.pageSize !== event.pageSize) {
       this.pageSize = event.pageSize;
-      this.highIndex = this.lowIndex + this.pageSize;
+      this.endIndex = this.startIndex + this.pageSize;
     }
     this.pageIndex = event.pageIndex;
   }
 
-  showTasks(lowIndex: number, highIndex: number): Task[] {
-    return this.tasks.slice(lowIndex, highIndex);
+  showTasks(startIndex: number, endIndex: number): Task[] {
+    return this.tasks.slice(startIndex, endIndex);
   }
 
   filterTasks(title: string, priority: string): void {
@@ -120,52 +153,16 @@ export class TasksComponent implements OnInit {
     this.tasks = this.initialTasks;
   }
 
-  sortById() {
-    this.isSortTitle = true;
-    this.isSortPriority = true;
-    if (!this.isSortId) {
-      this.isSortId = !this.isSortId;
+  sortByParam(sortParam: SortParam): void {
+    if (sortParam.isSorted) {
       this.tasks = this.tasks.reverse();
       return;
     }
-    this.isSortId = !this.isSortId;
-    this.tasks = this.tasks.sort((task1, task2) => {
-      return task1.id - task2.id;
+    this.tasks = this.tasks.sort(sortParam.sortFunc);
+    this.sortParams.forEach((param) => {
+      param.isSorted = false;
     });
-  }
-
-  sortByTitle() {
-    this.isSortId = true;
-    this.isSortPriority = true;
-    if (!this.isSortTitle) {
-      this.isSortTitle = !this.isSortTitle;
-      this.tasks = this.tasks.reverse();
-      return;
-    }
-    this.isSortTitle = !this.isSortTitle;
-    this.tasks = this.tasks.sort((task1, task2) => {
-      if (task1.title.toLocaleLowerCase() > task2.title.toLocaleLowerCase()) {
-        return 1;
-      }
-      if (task1.title.toLocaleLowerCase() < task2.title.toLocaleLowerCase()) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  sortByPriority() {
-    this.isSortId = true;
-    this.isSortTitle = true;
-    if (!this.isSortPriority) {
-      this.isSortPriority = !this.isSortPriority;
-      this.tasks = this.tasks.reverse();
-      return;
-    }
-    this.isSortPriority = !this.isSortPriority;
-    this.tasks = this.tasks.sort((task1, task2) => {
-      return this.getPriority(task1.priority) - this.getPriority(task2.priority)
-    });
+    sortParam.isSorted = true;
   }
 
   getPriority(priority: string) {

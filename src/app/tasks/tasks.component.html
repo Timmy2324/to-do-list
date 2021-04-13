@@ -35,18 +35,10 @@
     </div>
   </div>
   <div class="sorted-wrap">
-    <button (click)="sortById()">
-      id
-    </button>
-    <button (click)="sortByTitle()">
-      Заголовок
-    </button>
-    <button (click)="sortByPriority()">
-      Приоритет
-    </button>
+    <button *ngFor="let sortParam of sortParams" (click)="sortByParam(sortParam)">{{ sortParam.name }}</button>
   </div>
   <ul class="tasks">
-    <li *ngFor="let task of showTasks(lowIndex, highIndex)">
+    <li *ngFor="let task of showTasks(startIndex, endIndex)">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <a class="tasks-title">
